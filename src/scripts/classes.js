@@ -40,7 +40,7 @@ export class Header{
         <div class="header__logo"><img src="${this.logo}" alt=""></div>
         <div class="header__text">${this.title}</div>
         <div class="header-buttons">
-          <button class="header-buttons__btn button">Create sprite</button>
+          <a id="download-image" class="header-buttons__btn button">Download sprite</a>
           <button class="header-buttons__btn button">Sing in</button>
         </div>
       </header>
@@ -185,7 +185,8 @@ export class SidebarLg{
     <div class="sidebar__content">
       <div class="sidebar-previev">
   
-        <div class="sidebar-canvas">
+        <div class="sidebar-canvas" >
+        <img id ="previev-canvas-img" src = "http://localhost:8080/phone.png">
           <div class="sidebar-canvas__overlay">
             <div class="sidebar-canvas__head">
               <div class="sidebar-canvas__drops">

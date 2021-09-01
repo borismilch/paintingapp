@@ -6,8 +6,10 @@
     padding: 0px 10px;
     background: #1D1D1D;
     flex-direction: column;
+    
     justify-content: space-between;
     height: 100%;
+    
     // .sidebar__content
 
     &__content {
@@ -27,9 +29,14 @@
 .sidebar-canvas {
     width: 100%;
     height: 200px;
-    
+    position: relative;
     border-radius: 3px;
-    background: black url('http://localhost:8080/phone.png') repeat;  
+    background: black url('http://localhost:8080/phone.png') repeat center;
+    & img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
   
   
     // .sidebar-canvas__overlay

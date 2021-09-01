@@ -1,42 +1,21 @@
+import { noop } from "jquery";
 import {cursors} from "./images"   
 let coords = [];
 console.log(cursors)
+import { penAction , eraceAction, pickAction, lineAction, fillAction} from "./modes";
+window.coords = coords
 
+function toBlob(blob) {
+       
+   let link = document.getElementById('download-image')
+   let href = URL.createObjectURL(blob);
+   link.download = 'fff.png'
+   link.href = href    
+    document.getElementById('previev-canvas-img').src = href
+    
+    
+}
 
-// (e)=>{
-//     if(moseMove){
-//     ctx = window.ctx    
-//     ctx.lineWidth = window.lh 
-    
-//     coords.push([e.offsetX, e.offsetY])    
-//     ctx.lineTo(e.offsetX, e.offsetY)
-//     ctx.stroke()    
-    
-//     ctx.beginPath()
-//     ctx.arc(e.offsetX ,  e.offsetY , window.lh / 2 , 0, Math.PI * 2 )
-//     ctx.fill()
-
-//     ctx.beginPath()
-//     ctx.moveTo(e.offsetX ,  e.offsetY)
-    
-//     }
-// }
-function penAction(mouseMove){
-    if(mouseMove){
-    ctx = window.ctx    
-    ctx.lineWidth = window.lh 
-    
-    coords.push([e.offsetX, e.offsetY])    
-    ctx.lineTo(e.offsetX, e.offsetY)
-    ctx.stroke()    
-    
-    ctx.beginPath()
-    ctx.arc(e.offsetX ,  e.offsetY , window.lh / 2 , 0, Math.PI * 2 )
-    ctx.fill()
-
-    ctx.beginPath()
-    ctx.moveTo(e.offsetX ,  e.offsetY)
-}}
 
 export function paintInit(selector){
 let  canv = document.querySelector(selector);
@@ -45,34 +24,22 @@ lineWidth = 10;
 document.querySelector('[data-tool = "pen"]').click()
 window.lh = lineWidth
 window.ctx = ctx 
+
 let moseMove = false
-
-canv.addEventListener('mousedown',()=> moseMove = true)
-canv.addEventListener('mouseup', ()=>{ moseMove = false; ctx.beginPath(); coords.push('mouseup') }) 
-
-canv.onmousemove =  (e)=>{
-    if(moseMove){
-    ctx = window.ctx    
-    ctx.lineWidth = window.lh 
-    
-    coords.push([e.offsetX, e.offsetY])    
-    ctx.lineTo(e.offsetX, e.offsetY)
-    ctx.stroke()    
-    
-    ctx.beginPath()
-    ctx.arc(e.offsetX ,  e.offsetY , window.lh / 2 , 0, Math.PI * 2 )
-    ctx.fill()
-
-    ctx.beginPath()
-    ctx.moveTo(e.offsetX ,  e.offsetY)
-    
-    }
+canv.style.cursor = `url(${cursors.pencil}), auto`
+canv.onmousedown = ()=> moseMove = true
+canv.onmouseup =  ()=>
+{ 
+    moseMove = false; ctx.beginPath(); coords.push('mouseup')
+    canv.toBlob((blob)=>toBlob(blob), 'image/png');
 }
 
-canvasDraw(penAction)
+canv.onmousemove = (e)=> penAction(moseMove, ctx, e)
+
+
 function save(){
     console.log('saved')
-    localStorage.setItem('coords', JSON.stringify(coords))
+    localStorage.setItem('coords', JSON.stringify(window.coords))
 }
 
 function clear(){
@@ -111,7 +78,12 @@ setTimeout(()=>{
 
 
 function toolsHandler(e){
-
+    canv.onmousedown = ()=> moseMove = true
+    canv.onmouseup =  ()=>
+    { 
+        moseMove = false; ctx.beginPath(); coords.push('mouseup') ;
+        canv.toBlob((blob)=>toBlob(blob), 'image/png');
+    }
     if(e.target.closest('[data-tool = "broom"]')){
         clear()
     }
@@ -124,15 +96,20 @@ function toolsHandler(e){
         replay()
     }
     if(e.target.closest('[data-tool = "pen"]')){
-       
+        canv.onmousemove = (e)=> penAction(moseMove, ctx, e);
         canv.style.cursor = `url(${cursors.pencil}), auto`
     }
     if(e.target.closest('[data-tool = "eraser"]')){
+        canv.onmousemove = (e)=> eraceAction(moseMove, ctx, e);
         canv.style.cursor = `url(${cursors.erase}), auto`
     }
-    if(e.target.closest('[data-tool = "eraser"]')){
-        canv.style.cursor = `url(${cursors.erase}), auto`
+    if(e.target.closest('[data-tool = "colorpicker"]')){
+        let item = document.querySelectorAll('[data-fill]')[1]
+        canv.onmousedown = (e)=> pickAction(item,ctx, e);
+        canv.onmousemove = (e)=> noop();
+        canv.style.cursor = `url(${cursors.dropper}), auto`
     }
+    
     if(e.target.closest('[data-tool = "dryclean"]')){
         canv.style.cursor = `url(${cursors.circl}), auto`
     }
@@ -140,37 +117,20 @@ function toolsHandler(e){
         canv.style.cursor = `url(${cursors.rectangle}), auto`
     }
     if(e.target.closest('[data-tool = "dashedline"]')){
-        canv.style.cursor = `url(${cursors.stroke}), auto`
+        canv.onmousemove = (e)=> lineAction(canv, ctx,  e)
+        
+        canv.style.cursor = `url( ${cursors.stroke}), auto`
     }
     if(e.target.closest('[data-tool = "flip"]')){
         canv.style.cursor = `url(${cursors.mirror}), auto`
     }
     if(e.target.closest('[data-tool = "fill"]')){
+        canv.onmousedown = (e)=> fillAction(ctx, e);
         canv.style.cursor = `url(${cursors.buck}), auto`
     }
 }
 
 
 }
-// document.addEventListener('keyup',(e)=>{
 
-//     if(e.keyCode === 83){
-//        save()
-//        console.log('saved')
-//     }
-    
-//     if(e.keyCode === 82){
-        // coords = JSON.parse(localStorage.getItem('coords'))
-        // clear()
-//         replay()
-
-
-//        console.log('replayed')
-//     }
-
-//     if(e.keyCode === 67){
-//         clear()
-//     }
-
-// })
    

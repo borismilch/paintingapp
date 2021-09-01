@@ -44,4 +44,5 @@ import rectangle from '../../assets/cursors/rectangle'
 import stroke from "../../assets/cursors/stroke"
 import mirror from "../../assets/cursors/vertical-mirror-pen"
 import buck from "../../assets/cursors/paint-bucket"
-export const cursors = {circl,erase,pencil,rectangle,stroke,mirror, buck}
+import dropper from "../../assets/cursors/dropper"
+export const cursors = {circl,erase,pencil,rectangle,stroke,mirror, buck, dropper}
