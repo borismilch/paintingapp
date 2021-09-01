@@ -1,0 +1,50 @@
+.header {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    height: 47px;
+    align-items: center;
+    background: rgb(44, 44, 44  );
+    padding: 15px;
+
+
+    // .header__logo
+
+    &__logo {
+        position: relative;
+        height: 24px;
+        padding: 6px 15px 6px 12px;
+        display: flex;
+        align-items: center;
+        & img{
+            height: 27px;
+
+        }
+    }
+
+    // .header__text
+
+    &__text {
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 16pt;
+        color: #888;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        text-shadow: 0 -1px 0 #000;
+    }
+}
+
+.header-buttons {
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    // .header-buttons__btn
+
+    &__btn {
+        padding: 5px 10px;
+    }
+}

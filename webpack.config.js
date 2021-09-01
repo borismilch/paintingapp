@@ -30,7 +30,6 @@ module.exports = {
     mode:'development',
     entry : {
         main:['@babel/polyfill','./index.js'],
-        analytics : './auth'
     },
     output : {
        filename: filename('js'),
@@ -53,22 +52,13 @@ module.exports = {
     plugins:[
         new HTMLWebpackPlugin({
             title: 'webApp',
-            filename: 'main.html',
-            template: './main.html',
+            filename: 'index.html',
+            template: './index.html',
             minify:{
                 collapseWhitespace: !isDev
             }
         }),
-        new HTMLWebpackPlugin({
-            title: 'webpp',
-            filename:   'index.html',
-            template: './auth.html'
-        }),
-        new HTMLWebpackPlugin({
-            title: 'reg',
-            filename:'register.html',
-            template: './register.html'
-        }),
+     
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [
@@ -102,6 +92,7 @@ module.exports = {
                 loader: 'file-loader',
                 options : {
                     hmr:isDev,
+                    name: '[name].[ext]'
                 }
           },
         ],

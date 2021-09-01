@@ -1,0 +1,270 @@
+
+.tools {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    flex: 0 0 15%;
+    z-index: 10;
+    padding: 0px 10px 0px 0px ;
+    background: #1D1D1D;
+		// .tools__wrapper
+
+		&__wrapper {
+            flex: 0 0 47%;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            max-width: 96px;
+            height: 100%;
+            justify-content: center;
+		}
+}
+.tools-sizes {
+    display: flex;
+    gap: 2px;
+		// .tools-sizes__item
+
+		&__item {
+            cursor: pointer;
+            border: 2px solid var(--border);
+            width: 20px;
+            height: 20px;
+            position: relative;
+            transition: 0.15s all ease;
+            &:hover{
+                border: 2px solid rgb(117, 115, 115)
+            }
+            &::after{
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                display: block;
+                text-align: center;
+                line-height: 12px;
+                font-size: 90%;
+            }
+            &:nth-child(1){
+                padding: 5px;
+            }
+            &:nth-child(2){
+              padding: 4px;
+            }
+            &:nth-child(3){
+               padding: 3px;
+            }
+            &:nth-child(4){
+              padding: 2px;
+            }
+
+            &.active{
+                border: 2px solid gold;
+                &::after{
+                    background:  gold;
+                }
+            }
+		}
+}
+
+.tools-toolbox {
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    
+		// .tools-toolbox__item
+
+		&__item {
+            cursor: pointer;
+            width: 46px;
+            height: 46px;
+            transition: all 0.1s ease;
+            display: flex;
+            border: 3px solid #3a3a3a;
+            align-items: center;
+            justify-content: center;
+            background-color: #3a3a3a;
+            & img{
+                height: 24px;
+                width: 24px;
+            }
+            &:hover{
+                background-color: #474646;
+            }
+            &.active{
+                border-color: gold;
+               
+            }
+		}
+}
+
+.tools-color {
+    margin: 10px 0px;
+    display: flex;
+    display: flex;
+    cursor: pointer;
+
+		// .tools-color__block
+
+		&__block {
+            position: absolute;
+            width: 47px;
+            z-index: 2;
+            padding: 5px;
+            height: 47px;
+            background-color: var(--border);
+            &:hover{
+                background-color: rgb(107, 105, 105);
+            }
+            &:nth-child(1){
+                transform: translate(-50%,-50%);
+            }
+            &:nth-child(2){
+                transform: translate(60%, 50%);
+            }
+		}
+
+		// .tools-color__arrow
+
+		&__arrow {
+            height: 75px;
+            display: flex;
+            align-items: flex-end;
+            & img{
+                width: 24px;
+                height: 24px;
+            }
+		}
+
+
+        &__picker{
+            opacity: 0;
+            width: 0px;
+            position: absolute;
+            visibility: hidden;
+        }
+
+        &__color{
+            padding: 2px;
+            width: 36px;
+            height: 36px;
+           
+
+        }
+}
+.dd{
+display: flex;
+flex-direction: column;
+position: relative;
+gap: 10px;
+}
+.tools-previev {
+    padding: 0px 10px 50px 3px;
+    display: flex;
+    
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: #666;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: #999;
+        cursor: pointer;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: rgba(50, 50, 50, 0.4);
+    }
+    &::-webkit-scrollbar-track {
+        background-color: rgba(50, 50, 50, 0.4);
+    }
+
+    // .tools-previev__item
+
+    &__item {
+       flex-shrink: 0 ;
+       cursor: pointer;
+       transition: all 0.2s ease;
+       border: 3px solid var(--border);
+       width: 100%;
+       position: relative;
+       height: 96px;
+       border-radius: 3px;
+       background: black url('http://localhost:8080/phone.png') repeat;
+       &::before{
+        content: "";
+        position: absolute;
+        top: 38px;
+        right: -9px;
+        border: transparent 4px solid;
+        border-left-color: gold;
+        border-width: 6px 0 6px 6px;
+        border-style: solid;
+        opacity: 0;
+         }
+       &.active{
+        border-color: gold;
+        &::before{
+            opacity: 1;
+        }
+       }
+       &:hover{
+        border-color: rgba(196, 140, 0, 0.76);
+       }
+    }
+
+    // .tools-previev__number
+
+    &__number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: gold;
+        font-size: 16px;
+        width: 28px;
+        border-radius: 3px;
+        font-weight: 700;
+        height: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--dark);
+    }
+
+    // .tools-previev__button
+
+    &__button {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+        padding: 6px 0;
+        overflow: hidden;
+        transition: 0.1s all ease;
+        width: 96px;
+        border: #888 solid 3px;
+        border-radius: 4px;
+        color: rgb(110, 109, 109);
+        background-color: #222;
+        font-size: 13px;
+        cursor: pointer;
+        font-weight: 600;
+        &:hover{
+            border-color: gold;
+            color: gold;
+        }
+        & i{
+            font-size: 15px;
+            padding: 0px 0px 0px 5px;
+        }
+    }
+}

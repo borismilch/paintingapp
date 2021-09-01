@@ -1,9 +1,43 @@
-@import "./vars.scss";
-@import "~bootstrap";
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
-@import "./mixin.scss";
-@import "./bootstrap.scss";
+@import "normalize.css";
+@import "roboto.css";
+@import "vars.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
 @import "./global.scss";
-@import "./auth.scss";
-@import "./header.scss";
-@import "./footer.scss";
+@import "./blocks/header.scss";
+@import "./blocks//toolsbar.scss";
+@import "./blocks//sidebar-sm.scss";
+@import "./blocks/sidebar.scss";
+@import "./blocks//layers.scss";
+@import "./blocks/canvas.scss";
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: var(--text);
+    background: #1D1D1D;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    cursor: default;
+    font-size: 11px;
+    line-height: 1.1;
+    
+}
+main{
+    display: flex;
+    height: 100%;
+    margin: 0px 0px 10px 0px;
+    padding: 10px 3px;
+}
+//<i class="bi bi-paint-bucket"></i>
+//<i class="bi bi-brush-fill"></i>
+//<i class="bi bi-dash-lg"></i>
+//<i class="bi bi-eraser-fill"></i>
+//<i class="bi bi-arrows-move"></i>
+//<i class="bi bi-eyedropper"></i>

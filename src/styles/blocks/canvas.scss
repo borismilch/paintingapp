@@ -1,0 +1,20 @@
+#canvas{
+    background-color: var(--canvas-back);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#paint-area{
+    z-index: 10;
+    background-color: rgb(226, 221, 221);
+    border: 5px solid rgb(173, 168, 168);
+    position: absolute;
+    
+    background: url('http://localhost:8080/phone.png') repeat;
+    left: 23.2%;
+    // left: center;
+    // text-align: center;
+}
