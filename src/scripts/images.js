@@ -18,7 +18,7 @@ import  card  from "../../assets/sidebar/memory-card.svg"
 export const images =  {logo, phone,change}
 export const icons = [pen, eraser, picker, dash,  move, fill, wand,  lasso, dry, flip, square,shape, broom, card ]
 
-
+import circle from "../../assets/toolsboard/circle-of-two-clockwise-arrows-rotation.svg"
 
 import  settings  from "../../assets/sidebar/settings.svg"
 import  folder  from "../../assets/sidebar/folder.svg"
@@ -26,10 +26,10 @@ import  landscape  from "../../assets/sidebar/landscape.svg"
 
 import  screen  from "../../assets/sidebar/full-screen.svg"
 
-export const sideico = [settings, folder, landscape, card, screen]
+export const sideico = [settings, folder, landscape, circle, screen]
 
 import center from "../../assets/toolsboard/center.svg"
-import circle from "../../assets/toolsboard/circle-of-two-clockwise-arrows-rotation.svg"
+
 import crop from "../../assets/toolsboard/crop.svg"
 import symetry from "../../assets/toolsboard/horizontal-symmetry.svg"
 import sheep from "../../assets/toolsboard/sheep.svg"

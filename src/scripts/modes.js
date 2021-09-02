@@ -34,6 +34,8 @@ export function pickAction(item, ctx, e){
    let rgb = `rgb(${bincolor.slice(0, 3).join(',')})`
    item.style.background = rgb
    item.dataset.color = rgb
+   ctx.fillStyle = rgb
+   ctx.strokeStyle = rgb
 }
 
 export function lineAction(canv,  ctx,e){

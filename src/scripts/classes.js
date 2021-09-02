@@ -1,6 +1,7 @@
 import { noop } from "jquery"
 import { toName} from './utils'
 
+
 let counter = 1
 function creator(element, cls, attr = false, attrval){
     const el = document.createElement(element)
@@ -159,12 +160,48 @@ export class SidebarSm{
     this.icons = icons
     this.$el = creator('div', 'settings', 'id', 'settings')
     this.$el.innerHTML = this.toHTML()
+
+    this.$el.addEventListener('click', this.sidebaHandler)
   }
   toHTML(){
-    let html= ''
-    this.icons.map(item=> html += ` <div class="tools-toolbox__item"><img src="${item}" alt=""></div>`)
+    let html= `<input type="file" id="image-uploader"> <img src ="" id="transp">`
+    this.icons.map(item=> html += ` <div class="tools-toolbox__item" data-nav = "${toName(item)}"><img src="${item}" alt=""></div>`)
     return html
   }
+  sidebaHandler(e){
+     window.rot = 0
+    let canv =  document.querySelector('#paint-area')
+    if(e.target.closest('[data-nav = landscape]')){
+      let input = document.getElementById('image-uploader')
+      input.click()
+      input.onchange = ()=>{
+        let file = input.files[0]
+        let reader = new FileReader()
+
+        reader.addEventListener('load', ()=>{
+
+          let  image = new Image();
+          
+          image.onload = function() {
+            window.ctx.drawImage(image,0, 0, canv.width, canv.height  );
+          };
+          image.src = reader.result;
+         
+        })
+        if(file) reader.readAsDataURL(file)
+
+
+      }
+
+    }
+    if(e.target.closest('[data-nav = circleoftwoclockwisearrowsrotation]'))
+    {
+      canv.style.transform =  `rotate(${window.rot += 90}deg)` 
+    }
+    
+  }
+
+ 
 }
 
 export class SidebarLg{
